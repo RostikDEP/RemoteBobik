@@ -1,15 +1,21 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from typing import Optional
+from utils import DB_Processor
+
+
+db = DB_Processor('database.db')
 app = FastAPI()
 
 
 @app.get("/")
 def home():
-    return "Hello world"
+    return "Rostik do something strange again !"
 
 
 @app.get("/send_instruction")
-def send_instruction(from_ : Optional[int], to : Optional[int], instruction: Optional[str]):
+def send_instruction(from_ : Optional[int] = None, to : Optional[int] = None, instruction: Optional[str] = None, request: Optional[str] = ""):
     if from_ and to and instruction:
-        return {"from_" : from_, "to" : to, "instruction" : instruction}
-    return "Error"
+        db.AddInstruction(from_, to, instruction, request)
+        return HTTPException(status_code=200, detail={"From": from_, "To": to, "Instruction": instruction, "Request": request})
+    else:
+        return HTTPException(status_code=400, detail="Incorrect request")
