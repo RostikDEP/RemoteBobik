@@ -11,7 +11,7 @@ print("""
 
 
 def SendInstruction():
-    server = input("Central server IP: ") or "http://127.0.0.1:8000/send_instruction"
+    server = input("Central server IP: ") or "http://127.0.0.1:8000/instructions/send"
     from_id = int(input("From id (default:11): ").strip() or "11")
     to_id = int(input("To id (default:22): ").strip() or "22")
     instruction = input("Instruction (default:TestInstruction): ") or "TestInstruction"

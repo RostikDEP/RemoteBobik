@@ -12,10 +12,20 @@ def home():
     return "Rostik do something strange again !"
 
 
-@app.get("/send_instruction")
-def send_instruction(from_ : Optional[int] = None, to : Optional[int] = None, instruction: Optional[str] = None, request: Optional[str] = ""):
+@app.get("/instructions/send")
+async def send_instruction(from_ : Optional[int] = None, to : Optional[int] = None, instruction: Optional[str] = None, request: Optional[str] = ""):
     if from_ and to and instruction:
         db.AddInstruction(from_, to, instruction, request)
         return HTTPException(status_code=200, detail={"From": from_, "To": to, "Instruction": instruction, "Request": request})
     else:
         return HTTPException(status_code=400, detail="Incorrect request")
+
+
+@app.get("/instructions/request_all")
+async def instructions_request_all():
+    pass
+
+
+@app.get("/instruction/request_uncompleted")
+async def instructions_request_uncompleted():
+    pass
