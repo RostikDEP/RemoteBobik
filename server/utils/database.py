@@ -15,6 +15,15 @@ class DB_Processor:
         self.db.close()
 
 
+    def GetAllInstructions(self):
+        self.Connect()
+        sql = """SELECT * FROM instructions"""
+        self.cursor.execute(sql)
+        result = self.cursor.fetchall()
+        self.db.close()
+        return result
+
+
     def Connect(self):
         self.db = sqlite3.connect(self.path)
         self.cursor = self.db.cursor()
