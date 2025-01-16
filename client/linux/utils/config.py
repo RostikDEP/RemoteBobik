@@ -1,0 +1,4 @@
+#CLI---------
+REQUESTS_TIMEOUT = 1
+#REMOTE_SERVER---------
+SERVER = "http://127.0.0.1:8000/"

@@ -23,9 +23,11 @@ async def send_instruction(from_ : Optional[int] = None, to : Optional[int] = No
 
 @app.get("/instructions/request_all")
 async def instructions_request_all():
-    pass
+    records = db.GetAllInstructions()
+    return records
 
 
-@app.get("/instruction/request_uncompleted")
-async def instructions_request_uncompleted():
-    pass
+@app.get("/instructions/request_uncompleted")
+async def instructions_request_uncompleted(id_):
+    records = db.GetInstructionByUncompleted(id_)
+    return records

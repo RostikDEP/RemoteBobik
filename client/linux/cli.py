@@ -1,5 +1,3 @@
-from termios import ECHOK
-
 import requests
 
 print("""                                                     
@@ -29,11 +27,37 @@ def SendInstruction():
         print(e)
 
 
+def CheckUncompleted():
+    server = input("Central server IP: ") or "http://127.0.0.1:8000/instructions/request_uncompleted"
+    from_id = int(input("From id (default:1): ").strip() or "1")
+
+    try:
+        result = requests.get(server, params={"id_" : from_id})
+        return result.content.decode()
+    except Exception as e:
+        print(e)
+
+
+def MakeUncompleted():
+    result = CheckUncompleted()
+    if len(result) != 0:
+        print("I have uncompleted tasks")
+    else:
+        print("Tasks not exist")
+
+
+
 if __name__ == "__main__":
     run = True
     while run:
         cmd = input("Enter command: ")
         if cmd == "send":
             SendInstruction()
+        if cmd == "check_uncompleted":
+            CheckUncompleted()
+        if cmd == "make":
+            MakeUncompleted()
+
+
         if cmd == "q":
             exit()

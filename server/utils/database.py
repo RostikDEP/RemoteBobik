@@ -24,6 +24,24 @@ class DB_Processor:
         return result
 
 
+    def GetInstructionByStatus(self, id_, status):
+        self.Connect()
+        sql = f"""SELECT * FROM instructions WHERE status like "{status}" AND from_id  like {id_}"""
+        self.cursor.execute(sql)
+        result = self.cursor.fetchall()
+        self.db.close()
+        return result
+
+
+    def GetInstructionByUncompleted(self, id_):
+        self.Connect()
+        sql = f"""SELECT * FROM instructions WHERE status not like "done" AND from_id  like {id_}"""
+        self.cursor.execute(sql)
+        result = self.cursor.fetchall()
+        self.db.close()
+        return result
+
+
     def Connect(self):
         self.db = sqlite3.connect(self.path)
         self.cursor = self.db.cursor()
