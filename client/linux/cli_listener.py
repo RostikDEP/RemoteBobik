@@ -3,7 +3,7 @@ import requests
 import schedule
 
 import utils.config as config
-from client.linux.utils import RemoteServer
+from client.windows.utils import RemoteServer
 import preferences
 
 print("""                                                     
