@@ -5,9 +5,9 @@ class RemoteServer:
         self.server = server
 
 
-    def RequestUncompleted(self, from_id, server_method="instructions/", action="request_uncompleted/"):
+    def RequestUncompleted(self, to_id, server_method="instructions/", action="request_uncompleted/"):
         try:
-            result = requests.get(f"{self.server}{server_method}{action}", params={"id_": from_id})
+            result = requests.get(f"{self.server}{server_method}{action}", params={"id_": to_id})
             return list(result.json())
         except Exception as e:
             print(e)

@@ -35,7 +35,7 @@ class DB_Processor:
 
     def GetInstructionByUncompleted(self, id_):
         self.Connect()
-        sql = f"""SELECT * FROM instructions WHERE status not like "done" AND from_id  like {id_}"""
+        sql = f"""SELECT * FROM instructions WHERE status not like "done" AND to_id  like {id_}"""
         self.cursor.execute(sql)
         result = self.cursor.fetchall()
         self.db.close()

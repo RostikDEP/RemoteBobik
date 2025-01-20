@@ -1,4 +1,5 @@
 #CLI---------
-REQUESTS_TIMEOUT = 1
+REQUESTS_TIMEOUT = 3
+MY_ID = 11
 #REMOTE_SERVER---------
 SERVER = "http://127.0.0.1:8000/"
