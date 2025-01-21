@@ -13,6 +13,7 @@ dp:Dispatcher = Dispatcher()
 async def main():
     #Реєстрація обробників
     dp.include_router(start.router)
+    dp.include_router(screenshot.router)
     #--------------------------
     print("Bot is running...")
     await dp.start_polling(bot)

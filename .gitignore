@@ -162,3 +162,5 @@ cython_debug/
 .idea/
 
 server/database.db
+telegram_server/config.py
+telegram_server/handlers/utils/config.py

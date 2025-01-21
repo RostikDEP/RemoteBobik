@@ -15,7 +15,8 @@ class Listener:
             results = self.RemoteServer.RequestUncompleted(config.MY_ID)
             for result in results:
                 if result[3] in Types.Methods.available and result[4] in Types.Status.available:
-                    print(f"{result}+++++")
+                    if result[3] == "screenshot":
+                        pass
                 else:
                     print(f"{result}----")
 
