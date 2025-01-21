@@ -42,6 +42,14 @@ class DB_Processor:
         return result
 
 
+    def WriteImagePathByRecordId(self, id_, filepath):
+        self.Connect()
+        sql = f"""UPDATE instructions SET request = "{filepath}" WHERE id = {id_}"""
+        self.cursor.execute(sql)
+        self.db.commit()
+        self.db.close()
+
+
     def Connect(self):
         self.db = sqlite3.connect(self.path)
         self.cursor = self.db.cursor()
